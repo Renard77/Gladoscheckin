@@ -49,14 +49,7 @@ if __name__ == '__main__':
             # 获取账号email
             email = result['data']['email']
 
-            if status == "Checkin! Get 1 Day":
-                success += 1
-                message_status = "签到成功，会员天数 + 1"
-            elif status == "Please Try Tomorrow":
-                message_status = "今日已签到"
-            else:
-                fail += 1
-                message_status = "签到失败，请检查..."
+            message_status = status
 
             if leftdays is not None:
                 message_days = f"{leftdays} 天"
@@ -79,7 +72,6 @@ if __name__ == '__main__':
      # --------------------------------------------------------------------------------------------------------#
     print("sendContent:" + "\n", sendContent)
     if sckey != "":
-        title += f': 成功{success},失败{fail}'
-        plusurl = f"http://www.pushplus.plus/send?token={sckey}&title={title}&content={sendContent}"
+        plusurl = f"http://www.pushplus.plus/send?token={sckey}&content={sendContent}"
         r = requests.get(plusurl)
         print(r.status_code)
