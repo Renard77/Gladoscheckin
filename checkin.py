@@ -34,11 +34,12 @@ if __name__ == '__main__':
         state = requests.get(url2, headers={
                              'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent})
     # --------------------------------------------------------------------------------------------------------#
+        message_status = ''
         if checkin.status_code == 200:
             # 解析返回的json数据
             result = checkin.json()     
             # 获取签到结果
-            status = result.get('message')
+            message_status = result.get('message')
 
             # 获取账号当前状态
             result = state.json()
@@ -46,9 +47,7 @@ if __name__ == '__main__':
             leftdays = int(float(result['data']['leftDays']))
             # 获取账号email
             email = result['data']['email']
-
-            message_status = status
-
+            
             if leftdays is not None:
                 message_days = f"{leftdays} 天"
             else:
@@ -70,6 +69,6 @@ if __name__ == '__main__':
      # --------------------------------------------------------------------------------------------------------#
     print("sendContent:" + "\n", sendContent)
     if sckey != "":
-        plusurl = f"http://www.pushplus.plus/send?token={sckey}&content={sendContent}"
+        plusurl = f"http://www.pushplus.plus/send?token={sckey}&title={message_status}&content={sendContent}"
         r = requests.get(plusurl)
         print(r.status_code)
