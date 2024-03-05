@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     # 推送内容
     title = "Glados"
-    success, fail = 0, 0        # 成功账号数量 失败账号数量
+
     sendContent = ""
 
     # glados账号cookie 直接使用数组 如果使用环境变量需要字符串分割一下
