@@ -9,8 +9,6 @@ if __name__ == '__main__':
     sckey = os.environ.get("PUSHPLUS", "")
 
     # 推送内容
-    title = "Glados"
-
     sendContent = ""
 
     # glados账号cookie 直接使用数组 如果使用环境变量需要字符串分割一下
